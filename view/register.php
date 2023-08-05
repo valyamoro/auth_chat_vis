@@ -3,11 +3,9 @@
 
 session_start();
 
-$SESSION['user'] = $user; 
-
-if ($user) {
-    header('Location: profile.php');
-}
+// if ($_SESSION['user']) {
+//     header('Location: profile.php');
+// }
 
 ?>
 
@@ -28,10 +26,12 @@ if ($user) {
         <input type="email" name="email" placeholder="Введите адрес своей почты">
         <label>Изображение профиля</label>
         <input type="file" name="avatar">
+        <label>Секретное слово</label>
+        <input type="text" name="secretWord" placeholder="Введите секретное слово">
         <label>Пароль</label>
         <input type="password" name="password" placeholder="Введите пароль">
         <label>Подтверждение пароля</label>
-        <input type="password" name="password_confirm" placeholder="Подтвердите пароль">
+        <input type="password" name="passwordConfirm" placeholder="Подтвердите пароль">
         <button type="submit">Войти</button>
         <p>
             У вас уже есть аккаунт? - <a href="/">авторизируйтесь</a>!

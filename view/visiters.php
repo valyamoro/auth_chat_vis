@@ -10,18 +10,20 @@ require '../vendor/users.php';
     <title>Список пользователей</title>
 </head>
 <body> 
-    <?php 
-        if (mysqli_num_rows($result) > 0) {
+<?php 
+
+    if (mysqli_num_rows($result) > 0) {
             // Выводим данные всех пользователей
-            while ($row = mysqli_fetch_assoc($result)) {
-                echo "ID: " . $row["id"] . "<br>";
-                echo "Имя: " . $row["login"] . "<br>";
-                echo "Email: " . $row["email"] . "<br>";
-                echo '-------------------------------------' . "<br>";
-            }
-        } else {
-            echo "Нет данных пользователей.";
+        while ($row = mysqli_fetch_assoc($result)) {
+            echo "ID: " . $row["id"] . "<br>";
+            echo "Имя: " . $row["login"] . "<br>";
+            echo "Email: " . $row["email"] . "<br>";
+            echo '-------------------------------------' . "<br>";
         }
-    ?>
+    } else {
+        echo "Нет данных пользователей.";
+    }
+
+?>
 </body>
 </html>

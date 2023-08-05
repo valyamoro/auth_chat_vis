@@ -1,8 +1,7 @@
 <?php
-    session_start();
-    if ($_SESSION['user']) {
-        header('Location: profile.php');
-    }
+
+session_start();
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -18,11 +17,11 @@
         <input type="submit">
     </form>
         <?php
-            if ($_SESSION['message']) {
-                echo ($_SESSION['message']);
+            $messageFail = $_SESSION['message'];
+            if ($messageFail) {
+                echo $messageFail;
             }
-            unset($_SESSION['message']);
-            // Можно ли вот таким образом вставлять в html код флеш сообщения, или можно сделать по другому
+            unset($messageFail);
         ?> 
 </body>
 </html>

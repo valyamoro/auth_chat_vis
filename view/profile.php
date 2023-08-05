@@ -1,9 +1,4 @@
-<?php
-session_start();
-if (!$_SESSION['user']) {
-    header('Location: /');
-}
-?>
+<?php session_start() ?>
 
 <!doctype html>
 <html lang="en">
@@ -15,6 +10,8 @@ if (!$_SESSION['user']) {
 <body>
 
     <!-- Профиль -->
+
+    <!-- Когда сделаем контроллер, нужно будет перезаписать все подмассивы сессий в переменные и через require подключить сам контроллер -->
 
     <form>
         <img src="<?= '../' . $_SESSION['user']['avatar'] ?>" width="200" alt="">

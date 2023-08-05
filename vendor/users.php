@@ -1,9 +1,11 @@
 <?php 
 
-    require_once 'connect.php'; 
+declare(strict_types=1);
 
-    $query_users = "SELECT * FROM `users`"; 
+require_once 'connect.php'; 
 
-    $result = mysqli_query($connect, $query_users);
+$queryUsers = "SELECT * FROM `users`"; 
+
+$result = mysqli_query($connect, $queryUsers);
     
 ?> 

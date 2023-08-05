@@ -1,37 +1,41 @@
 <?php
 
-    session_start();
-    require_once 'connect.php';
+declare(strict_types=1);
 
-    $login = $_POST['login'];
-    $email = $_POST['email'];
-    $password = $_POST['password'];
-    $password_confirm = $_POST['password_confirm'];
+session_start();
+require_once 'connect.php';
 
-    if(!empty($login) and !empty($email) and !empty($password)){
-        if ($password === $password_confirm) {
+$login = $_POST['login'] ?? null;
+$email = $_POST['email'] ?? null;
+$password = $_POST['password'] ?? null;
+$password_confirm = $_POST['password_confirm'] ?? null;
 
-            $path = 'uploads/' . time() . $_FILES['avatar']['name'];
-            if (!move_uploaded_file($_FILES['avatar']['tmp_name'], '../' . $path)) {
-                $_SESSION['message'] = 'Ошибка при загрузке сообщения';
-                header('Location: ../register.php');
-            }
+if (!empty($login) && !empty($email) && !empty($password)) {
+    if ($password === $password_confirm) {
 
-            $counts = 0; 
-            $password = md5($password);
-
-            mysqli_query($connect, "INSERT INTO `users` (`id`, `login`, `email`, `password`, `avatar`, `counts`) VALUES (NULL, '$login', '$email', '$password', '$path', '$counts')");
-
-            $_SESSION['message'] = 'Регистрация прошла успешно!';
-            header('Location: ../view/profile.php');
-
-
-        } else {
-            $_SESSION['message'] = 'Пароли не совпадают';
-            header('Location: ../view/register.php');
+        $path = 'uploads/' . time() . $_FILES['avatar']['name'];
+        if (!move_uploaded_file($_FILES['avatar']['tmp_name'], '../' . $path)) {
+            $_SESSION['message'] = 'Ошибка при загрузке файла';
+            header('Location: ../register.php');
+            exit;
         }
+
+        $counts = 0;
+        $password = md5($password);
+
+        mysqli_query($connect, "INSERT INTO users (id, login, email, password, avatar, counts) VALUES (NULL, $login, $email, $password, $path, $counts)");
+
+        $_SESSION['message'] = 'Регистрация прошла успешно!';
+        header('Location: ../view/profile.php');
+        exit;
+
     } else {
-        $_SESSION['message'] = 'Вы не ввели данные!';
+        $_SESSION['message'] = 'Пароли не совпадают';
         header('Location: ../view/register.php');
+        exit;
     }
-?>
+} else {
+    $_SESSION['message'] = 'Вы не ввели данные!';
+    header('Location: ../view/register.php');
+    exit;
+}

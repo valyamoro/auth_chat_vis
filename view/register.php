@@ -1,8 +1,14 @@
 <?php
-    session_start();
-    if ($_SESSION['user']) {
-        header('Location: profile.php');
-    }
+
+
+session_start();
+
+$SESSION['user'] = $user; 
+
+if ($user) {
+    header('Location: profile.php');
+}
+
 ?>
 
 <!doctype html>

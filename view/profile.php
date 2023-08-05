@@ -20,5 +20,10 @@
         <a href="#"><?= $_SESSION['user']['counts']?></a>
         <a href="../vendor/logout.php" class="logout">Выход</a>
     </form>
+    <?php if($_SESSION['user']): ?> 
+        <form action="deleteProfile.php" method="post">
+            <input type="submit" value="УДАЛИТЬ АККАУНТ" name="deleteProfile">
+        </form>
+    <?php endif; ?> 
 </body>
 </html>

@@ -17,6 +17,7 @@
             "avatar" => $user['avatar'],
             "email" => $user['email'],
             "status" => $user['status'],
+            "secretWord" => $user['secretWord'], 
         ];
         $_SESSION['user']['id'] = $currentId; 
         $_SESSION['user'] = $user; 

@@ -18,9 +18,11 @@ if (!empty($login) && !empty($email) && !empty($password)) {
         $password = md5($password);
         $path = 'null'; 
 
-        $result = mysqli_query($connect, "INSERT INTO users (id, login, email, password, avatar, counts, secret_word) 
+        $result = mysqli_query($connect, "INSERT INTO users (id, login, email, password, avatar, counts, secretWord) 
         VALUES (NULL, '$login', '$email', '$password', '$path', '$counts', '$secretWord')");
 
+        $secretWord = $_SESSION['user']['secretWord']; 
+            
         if (!$result) {
             $_SESSION['message'] = 'Ошибка при выполнении запроса';
             header('Location: ../view/register.php');

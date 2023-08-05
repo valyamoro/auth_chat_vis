@@ -1,1 +1,1 @@
-[{"user":{"login":"kutlumbek"},"message":"dqw"},{"user":{"login":"kutlumbek"},"message":"asd"}]
+[{"user":{"login":"root"},"message":"dwqdqw"},{"user":[],"message":"\u0432\u0439\u0446\u0432\u0446"},{"user":[],"message":"qdwdqw"}]

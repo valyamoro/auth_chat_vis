@@ -3,9 +3,11 @@
 declare(strict_types=1);
 session_start();
 
+
 if (empty($_SESSION['user'])) {
     $login = $_POST['login'];
     $_SESSION['user']['login'] = $login;
+    $users = $_SESSION['users'] ?? [];
 }
 
 const MESSAGES_FILE = "../data/messages.txt";
@@ -26,13 +28,18 @@ if ($message && $login) {
     $userMessage = htmlspecialchars(strip_tags(trim($_POST['user_message'])));
 
     if (!empty($userMessage)) {
-        $newMessage = [
-            'user' => [
-                'login' => $login,
-            ],
+        $userData = $users[$login] ?? [];
+            $newMessage = [
+            'user' => $userData,
             'message' => $userMessage,
         ];
         $messages[] = $newMessage;
+        $users[$login] = [
+            'login' => $login,
+        ];
+
+        $_SESSION['users'] = $users;
+        
         file_put_contents(MESSAGES_FILE, json_encode($messages));
 
 		$_SESSION['success'] = 'Ваше сообщение добавлено!';
@@ -43,6 +50,7 @@ if ($message && $login) {
     } else {
         $_SESSION['error'] = 'Error'; 
     }
+  
 }
 
 
